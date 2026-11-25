@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 380" fill="none">
+  <rect width="360" height="380" fill="#EFE4D6"/>
+  <rect x="0" y="250" width="360" height="130" fill="#B56A6C"/>
+  <!-- Yellow Plush Duck beside owner -->
+  <circle cx="290" cy="310" r="42" fill="#F4D160"/>
+  <circle cx="290" cy="268" r="30" fill="#F4D160"/>
+  <ellipse cx="280" cy="274" rx="10" ry="6" fill="#E88A38"/>
+  <!-- Owner with glasses -->
+  <path d="M88 106 C88 60 224 60 224 106 L236 225 L76 225 Z" fill="#3A281E"/>
+  <circle cx="156" cy="126" r="44" fill="#DFB292"/>
+  <circle cx="140" cy="122" r="11" stroke="#362216" stroke-width="2.5" fill="none"/>
+  <circle cx="172" cy="122" r="11" stroke="#362216" stroke-width="2.5" fill="none"/>
+  <line x1="151" y1="122" x2="161" y2="122" stroke="#362216" stroke-width="2.5"/>
+  <path d="M146 144 Q156 152 166 144" stroke="#9B4E46" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M74 238 Q156 205 238 238 L250 380 L62 380 Z" fill="#7D8C9C"/>
+  <!-- Cream Maltipoo Puppy -->
+  <circle cx="164" cy="272" r="46" fill="#F6E4CC"/>
+  <ellipse cx="122" cy="276" rx="14" ry="26" fill="#DFC39F"/>
+  <ellipse cx="206" cy="276" rx="14" ry="26" fill="#DFC39F"/>
+  <circle cx="149" cy="268" r="5.5" fill="#231209"/>
+  <circle cx="179" cy="268" r="5.5" fill="#231209"/>
+  <ellipse cx="164" cy="278" rx="5.5" ry="4" fill="#231209"/>
+</svg>
+

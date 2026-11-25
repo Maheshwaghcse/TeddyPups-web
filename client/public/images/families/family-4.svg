@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 380" fill="none">
+  <rect width="360" height="380" fill="#EDE3D5"/>
+  <rect x="0" y="235" width="360" height="145" fill="#A59889"/>
+  <!-- Girl holding TWO puppies -->
+  <path d="M116 92 C116 48 244 48 244 92 L252 195 L108 195 Z" fill="#261A14"/>
+  <circle cx="180" cy="118" r="42" fill="#E3B391"/>
+  <circle cx="165" cy="114" r="4.5" fill="#231209"/>
+  <circle cx="195" cy="114" r="4.5" fill="#231209"/>
+  <path d="M170 132 Q180 142 190 132" stroke="#9F4E48" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M110 212 Q180 185 250 212 L262 380 L98 380 Z" fill="#B2A3BA"/>
+  <!-- Puppy 1 -->
+  <circle cx="145" cy="252" r="38" fill="#D48B4B"/>
+  <circle cx="133" cy="248" r="4.5" fill="#1F1009"/>
+  <circle cx="157" cy="248" r="4.5" fill="#1F1009"/>
+  <ellipse cx="145" cy="257" rx="5" ry="3.5" fill="#1F1009"/>
+  <!-- Puppy 2 -->
+  <circle cx="215" cy="252" r="38" fill="#E8AD6E"/>
+  <circle cx="203" cy="248" r="4.5" fill="#1F1009"/>
+  <circle cx="227" cy="248" r="4.5" fill="#1F1009"/>
+  <ellipse cx="215" cy="257" rx="5" ry="3.5" fill="#1F1009"/>
+</svg>
+

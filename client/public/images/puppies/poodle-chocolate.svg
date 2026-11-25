@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" fill="none">
+  <rect width="400" height="460" fill="#F8EBD8"/>
+  <ellipse cx="200" cy="402" rx="145" ry="38" fill="#E3CCA8"/>
+  <!-- Chocolate Toy Poodle Body -->
+  <ellipse cx="200" cy="336" rx="72" ry="66" fill="#6E3B23"/>
+  <circle cx="160" cy="325" r="32" fill="#784228"/>
+  <circle cx="240" cy="325" r="32" fill="#784228"/>
+  <ellipse cx="162" cy="390" rx="21" ry="14" fill="#6E3B23"/>
+  <ellipse cx="238" cy="390" rx="21" ry="14" fill="#6E3B23"/>
+  <!-- Curly Chocolate Ears -->
+  <ellipse cx="116" cy="220" rx="32" ry="56" transform="rotate(14 116 220)" fill="#582D18"/>
+  <ellipse cx="284" cy="220" rx="32" ry="56" transform="rotate(-14 284 220)" fill="#582D18"/>
+  <!-- Curly Afro Poodle Topknot -->
+  <circle cx="200" cy="196" r="72" fill="#743E24"/>
+  <circle cx="160" cy="152" r="34" fill="#7E452A"/>
+  <circle cx="200" cy="136" r="38" fill="#82492E"/>
+  <circle cx="240" cy="152" r="34" fill="#7E452A"/>
+  <circle cx="152" cy="214" r="30" fill="#7A4329"/>
+  <circle cx="248" cy="214" r="30" fill="#7A4329"/>
+  <!-- Muzzle & Eyes -->
+  <ellipse cx="200" cy="222" rx="32" ry="24" fill="#8C5135"/>
+  <circle cx="172" cy="192" r="10" fill="#1B0E08"/>
+  <circle cx="228" cy="192" r="10" fill="#1B0E08"/>
+  <circle cx="169" cy="188" r="3.2" fill="#FFFFFF"/>
+  <circle cx="225" cy="188" r="3.2" fill="#FFFFFF"/>
+  <ellipse cx="200" cy="214" rx="9" ry="7" fill="#1B0E08"/>
+  <path d="M189 227 Q200 236 211 227" stroke="#2D150A" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Cream Bowtie -->
+  <polygon points="180,276 200,286 180,296" fill="#FAF0DC"/>
+  <polygon points="220,276 200,286 220,296" fill="#FAF0DC"/>
+  <circle cx="200" cy="286" r="5" fill="#E3B35C"/>
+</svg>
+

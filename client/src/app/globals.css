@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+:root {
+  --font-fraunces: "Fraunces", Georgia, serif;
+  --font-jakarta: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-caveat: "Caveat", cursive;
+}
+
+@theme inline {
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-jakarta);
+  --font-script: var(--font-caveat);
+
+  --color-cream: #FAF0DC;
+  --color-cream-dark: #F4E4C6;
+  --color-honey: #EBBF82;
+  --color-amber-warm: #D99B52;
+  --color-terracotta: #9E4B1D;
+  --color-terracotta-dark: #7B3610;
+  --color-cinnamon: #9B5326;
+  --color-timber: #5D3219;
+  --color-espresso: #331C10;
+  --color-espresso-deep: #28150B;
+  --color-whatsapp: #1B7F4B;
+  --color-whatsapp-dark: #14633A;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAF0DC;
+  color: #361D10;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Subtle warm quilted diamond grid for hero band & passport pages */
+.diamond-quilt-bg {
+  background-color: #FAF0DC;
+  background-image: url("data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 0 L44 22 L22 44 L0 22 Z' fill='none' stroke='%23DFC8A6' stroke-width='1' stroke-opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 44px 44px;
+}
+
+/* Subtle paw wallpaper inside the WhatsApp mobile mockup */
+.paw-wallpaper-bg {
+  background-color: #F7EFE2;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23DFC9A8' fill-opacity='0.45'%3E%3Cellipse cx='30' cy='36' rx='6' ry='5'/%3E%3Ccircle cx='22' cy='27' r='2.5'/%3E%3Ccircle cx='30' cy='24' r='2.5'/%3E%3Ccircle cx='38' cy='27' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* Dark wood clapboard siding for Happy Families Polaroid wall */
+.wood-siding-bg {
+  background-color: #5C3018;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #5C3018 0px,
+    #5C3018 46px,
+    #482310 46px,
+    #482310 48px
+  );
+}
+
+/* Tiny warm starlight speckles for dark sections */
+.night-stars-bg {
+  background-color: #331C10;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(244, 208, 138, 0.45) 1.5px, transparent 2px),
+    radial-gradient(circle at 78% 12%, rgba(244, 208, 138, 0.35) 1px, transparent 1.5px),
+    radial-gradient(circle at 88% 44%, rgba(244, 208, 138, 0.45) 1.5px, transparent 2px),
+    radial-gradient(circle at 24% 66%, rgba(244, 208, 138, 0.35) 1px, transparent 1.5px),
+    radial-gradient(circle at 63% 78%, rgba(244, 208, 138, 0.4) 1.5px, transparent 2px),
+    radial-gradient(circle at 41% 32%, rgba(244, 208, 138, 0.25) 1px, transparent 1.5px);
+  background-size: 380px 380px;
+}
+
+/* Button presets matching TeddyPups pill aesthetic */
+.btn-terracotta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background-color: #9E4B1D;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.72rem 1.65rem;
+  box-shadow: 0 3px 0 #6B2F0E;
+  transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.btn-terracotta:hover {
+  background-color: #873E15;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #6B2F0E;
+}
+
+.btn-terracotta:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #6B2F0E;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background-color: #1B7F4B;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.72rem 1.65rem;
+  box-shadow: 0 3px 0 #105230;
+  transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.btn-whatsapp:hover {
+  background-color: #166A3E;
+  transform: translateY(-1px);
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1.5px solid #4A2A18;
+  background-color: rgba(255, 255, 255, 0.45);
+  color: #361D10;
+  font-weight: 600;
+  padding: 0.72rem 1.65rem;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: rgba(54, 29, 16, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 0.72rem 1.65rem;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: #FFFFFF;
+  transform: translateY(-1px);
+}

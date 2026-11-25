@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" fill="none">
+  <rect width="400" height="460" fill="#FAF1E3"/>
+  <ellipse cx="200" cy="404" rx="145" ry="38" fill="#E5D1B6"/>
+  <!-- Shih Tzu Body -->
+  <ellipse cx="200" cy="340" rx="78" ry="66" fill="#FFFFFF" stroke="#E5DDD3" stroke-width="2"/>
+  <ellipse cx="155" cy="390" rx="22" ry="14" fill="#FFFFFF" stroke="#DDD3C8" stroke-width="2"/>
+  <ellipse cx="245" cy="390" rx="22" ry="14" fill="#FFFFFF" stroke="#DDD3C8" stroke-width="2"/>
+  <!-- Floppy Bicolor Ears -->
+  <ellipse cx="116" cy="225" rx="32" ry="56" transform="rotate(14 116 225)" fill="#2D231E"/>
+  <ellipse cx="284" cy="225" rx="32" ry="56" transform="rotate(-14 284 225)" fill="#2D231E"/>
+  <!-- Round Head with White Blaze -->
+  <circle cx="200" cy="200" r="74" fill="#2D231E"/>
+  <path d="M174 134 Q200 124 226 134 L218 205 Q250 212 248 242 Q200 278 152 242 Q150 212 182 205 Z" fill="#FFFFFF"/>
+  <!-- Topknot Bow -->
+  <polygon points="182,118 200,128 182,138" fill="#E89E90"/>
+  <polygon points="218,118 200,128 218,138" fill="#E89E90"/>
+  <circle cx="200" cy="128" r="6" fill="#D57868"/>
+  <!-- Eyes & Muzzle -->
+  <circle cx="170" cy="194" r="10.5" fill="#18100C"/>
+  <circle cx="230" cy="194" r="10.5" fill="#18100C"/>
+  <circle cx="167" cy="190" r="3.5" fill="#FFFFFF"/>
+  <circle cx="227" cy="190" r="3.5" fill="#FFFFFF"/>
+  <ellipse cx="200" cy="214" rx="9" ry="6.5" fill="#18100C"/>
+  <path d="M189 226 Q200 234 211 226" stroke="#4D3326" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
