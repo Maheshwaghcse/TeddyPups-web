@@ -604,3 +604,8 @@ body {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Happy Families wall: warm cream with faint vertical plank lines */
+.tp-wall-page {
+  background-image: repeating-linear-gradient(90deg, transparent 0 118px, rgba(162, 74, 26, 0.05) 118px 120px);
+}

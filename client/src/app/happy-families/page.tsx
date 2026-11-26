@@ -6,26 +6,50 @@ export const dynamic = "force-dynamic";
 
 export default async function HappyFamiliesPage() {
   const families = await fetchHappyFamilies();
+  const quote = families.find((f) => f.testimonialQuote);
 
   return (
-    <div className="bg-gradient-to-b from-[#9B5326] via-[#87431A] to-[#331C10] min-h-screen py-14 sm:py-20 text-white">
-      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <div className="flex justify-center">
-            <MascotPuppy pose="sitting" className="w-20 h-20" animateFloat />
-          </div>
-          <h1 className="font-[family-name:var(--font-display)] text-4xl sm:text-6xl font-black tracking-tight">
-            Happy families &amp; puppies
+    <div className="tp-wall-page relative overflow-hidden bg-[#fff1d8] text-[#2a170e] pt-16 sm:pt-24 pb-28 sm:pb-36">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="text-center max-w-2xl mx-auto space-y-4">
+          <p className="font-scrawl text-sm sm:text-base text-[#a24a1a] lowercase">
+            our wall of happy endings
+          </p>
+          <h1 className="font-plush text-[clamp(2.75rem,7vw,5.5rem)] text-[#2a170e]">
+            Happy families
           </h1>
-          <p className="text-sm sm:text-base text-[#F5DEC7] leading-relaxed">
+          <p className="text-base sm:text-lg leading-relaxed text-[#5a3a28]">
             Real moments shared by TeddyPups families across Dubai, Abu Dhabi, and
             around the world after welcoming their new best friend home.
           </p>
+          <p className="font-scrawl text-sm text-[#8e3f15]">
+            {families.length} moments and counting
+          </p>
+        </header>
+
+        {quote && (
+          <blockquote className="mt-10 sm:mt-14 mx-auto max-w-2xl text-center">
+            <p className="font-plush-text text-xl sm:text-2xl leading-snug text-[#3a2013]">
+              &ldquo;{quote.testimonialQuote}&rdquo;
+            </p>
+            <footer className="mt-3 text-sm font-semibold text-[#a24a1a]">
+              {quote.clientName || "TeddyPups family"}
+              {quote.location ? `, ${quote.location}` : ""}
+            </footer>
+          </blockquote>
+        )}
+
+        <div className="mt-12 sm:mt-16">
+          <HappyFamiliesClient families={families} />
         </div>
 
-        <HappyFamiliesClient families={families} />
+        <div className="mt-20 sm:mt-28 flex flex-col items-center gap-3 text-center">
+          <MascotPuppy pose="sitting" className="w-20 h-20" animateFloat />
+          <p className="font-scrawl text-sm sm:text-base text-[#5a3a28]">
+            every one of them was a Teddy Pup once
+          </p>
+        </div>
       </div>
     </div>
   );
 }
-

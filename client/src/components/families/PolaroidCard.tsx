@@ -3,10 +3,11 @@ import type { HappyFamily } from "@/lib/types";
 
 interface PolaroidCardProps {
   family: HappyFamily;
+  ratio?: string;
 }
 
 /** Polaroid frame with jagged translucent masking tape, tilt, and smooth hover straighten. */
-export function PolaroidCard({ family }: PolaroidCardProps) {
+export function PolaroidCard({ family, ratio = "4 / 5" }: PolaroidCardProps) {
   return (
     <article
       className="group relative bg-[#fffefb] p-2.5 pb-0 rounded-[0.2rem] shadow-[0_1px_1px_rgba(42,23,14,0.12),0_10px_20px_-8px_rgba(42,23,14,0.36)] transition-all duration-450 ease-[cubic-bezier(.34,1.56,.64,1)] hover:-translate-y-1.5 hover:!rotate-0 hover:shadow-[0_1px_1px_rgba(42,23,14,0.12),0_18px_30px_-14px_rgba(42,23,14,0.42)] hover:z-10"
@@ -20,17 +21,18 @@ export function PolaroidCard({ family }: PolaroidCardProps) {
       />
 
       {/* Photo Viewport */}
-      <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-[1px] bg-[#e8dfd3] shadow-[inset_0_0_0_1px_rgba(42,23,14,0.08)]">
+      <div style={{ aspectRatio: ratio }} className="relative w-full overflow-hidden rounded-[1px] bg-[#e8dfd3] shadow-[inset_0_0_0_1px_rgba(42,23,14,0.08)]">
         <Image
           src={family.imageUrl}
           alt={family.caption}
           fill
+          sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
           className="object-cover"
         />
       </div>
 
       {/* Handwritten Caption */}
-      <p className="min-h-[2.6rem] py-2 px-1 text-center font-scrawl text-[0.95rem] sm:text-[1.02rem] text-[#5a3a28] leading-[1.2]">
+      <p className="min-h-[2.4rem] py-2 px-1 text-center font-scrawl text-[0.95rem] sm:text-[1.02rem] text-[#5a3a28] leading-[1.2]">
         {family.caption}
       </p>
     </article>
