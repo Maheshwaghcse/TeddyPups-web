@@ -1,9 +1,85 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Original Reference Variable Fonts (Fraunces, Figtree, Shantell Sans)
+   ========================================================================== */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin-ext.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("/fonts/figtree-latin-ext.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("/fonts/figtree-latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Shantell Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/shantell-latin-ext.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Shantell Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/shantell-latin.woff2") format("woff2");
+  unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
-  --font-fraunces: "Fraunces", Georgia, serif;
-  --font-jakarta: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-caveat: "Caveat", cursive;
+  --font-fraunces: "Fraunces", ui-serif, Georgia, serif;
+  --font-jakarta: "Figtree", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-caveat: "Shantell Sans", ui-rounded, "Comic Sans MS", cursive;
+
+  --color-toffee: #c2622b;
+  --color-toffee-deep: #a24a1a;
+  --color-toffee-ink: #8e3f15;
+  --color-honey: #f2be6b;
+  --color-honey-soft: #fbe3b4;
+  --color-cocoa: #2a170e;
+  --color-cocoa-soft: #5a3a28;
+  --color-milk: #fffdf8;
+  --color-night: #24130b;
+
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --header-h: 4.75rem;
+  --ease-pounce: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-silk: cubic-bezier(.22, 1, .36, 1);
+  --ease-snap: cubic-bezier(.7, 0, .2, 1);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 4rem;
+  }
 }
 
 @theme inline {
@@ -11,150 +87,520 @@
   --font-sans: var(--font-jakarta);
   --font-script: var(--font-caveat);
 
-  --color-cream: #FAF0DC;
-  --color-cream-dark: #F4E4C6;
-  --color-honey: #EBBF82;
-  --color-amber-warm: #D99B52;
-  --color-terracotta: #9E4B1D;
-  --color-terracotta-dark: #7B3610;
-  --color-cinnamon: #9B5326;
-  --color-timber: #5D3219;
-  --color-espresso: #331C10;
-  --color-espresso-deep: #28150B;
-  --color-whatsapp: #1B7F4B;
-  --color-whatsapp-dark: #14633A;
+  --color-cream: #fff1d8;
+  --color-cream-dark: #fbe3b4;
+  --color-honey: #f2be6b;
+  --color-amber-warm: #f0b866;
+  --color-terracotta: #a24a1a;
+  --color-terracotta-dark: #8e3f15;
+  --color-cinnamon: #a65a30;
+  --color-timber: #4d2b19;
+  --color-espresso: #2f1a10;
+  --color-espresso-deep: #24130b;
+  --color-whatsapp: #1f7a4d;
+  --color-whatsapp-dark: #17613c;
 }
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  overflow-x: clip;
 }
 
 body {
-  background-color: #FAF0DC;
-  color: #361D10;
+  background-color: #fffdf8;
+  color: #2a170e;
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-/* Subtle warm quilted diamond grid for hero band & passport pages */
+::selection {
+  background: #f2be6b;
+  color: #2a170e;
+}
+
+/* ==========================================================================
+   Original Custom Paw Cursor & Interactive Pointer States
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html,
+  body {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 64 64'%3E%3Cpath transform='rotate(-18 32 34)' fill='%23C2622B' stroke='%232A170E' stroke-width='3.4' stroke-linejoin='round' d='M32 30.5c-7.6 0-15.6 8.3-15.6 15.5 0 5.4 4.2 8.3 9.2 8.3 2.6 0 4.5-1.1 6.4-1.1s3.8 1.1 6.4 1.1c5 0 9.2-2.9 9.2-8.3 0-7.2-8-15.5-15.6-15.5zM19.28 26.71C21.07 30.08 20.42 33.92 17.84 35.29C15.25 36.67 11.71 35.05 9.92 31.69C8.13 28.32 8.78 24.48 11.36 23.11C13.95 21.73 17.49 23.35 19.28 26.71ZM29.62 15.64C30.32 19.62 28.46 23.26 25.47 23.79C22.48 24.32 19.48 21.53 18.78 17.56C18.08 13.58 19.94 9.94 22.93 9.41C25.92 8.88 28.92 11.67 29.62 15.64ZM45.22 17.56C44.52 21.53 41.52 24.32 38.53 23.79C35.54 23.26 33.68 19.62 34.38 15.64C35.08 11.67 38.08 8.88 41.07 9.41C44.06 9.94 45.92 13.58 45.22 17.56ZM54.08 31.69C52.29 35.05 48.75 36.67 46.16 35.29C43.58 33.92 42.93 30.08 44.72 26.71C46.51 23.35 50.05 21.73 52.64 23.11C55.22 24.48 55.87 28.32 54.08 31.69Z'/%3E%3C/svg%3E") 9 6, auto;
+  }
+
+  :is(a, button, summary, label[for], [role="button"], [role="tab"], select, input[type="checkbox"], input[type="radio"], input[type="submit"], .cursor-pointer) {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 64 64'%3E%3Cpath transform='rotate(-18 32 34) translate(3.2 3.4) scale(.9)' fill='%232A170E' stroke='%23F2BE6B' stroke-width='3.4' stroke-linejoin='round' d='M32 30.5c-7.6 0-15.6 8.3-15.6 15.5 0 5.4 4.2 8.3 9.2 8.3 2.6 0 4.5-1.1 6.4-1.1s3.8 1.1 6.4 1.1c5 0 9.2-2.9 9.2-8.3 0-7.2-8-15.5-15.6-15.5zM19.28 26.71C21.07 30.08 20.42 33.92 17.84 35.29C15.25 36.67 11.71 35.05 9.92 31.69C8.13 28.32 8.78 24.48 11.36 23.11C13.95 21.73 17.49 23.35 19.28 26.71ZM29.62 15.64C30.32 19.62 28.46 23.26 25.47 23.79C22.48 24.32 19.48 21.53 18.78 17.56C18.08 13.58 19.94 9.94 22.93 9.41C25.92 8.88 28.92 11.67 29.62 15.64ZM45.22 17.56C44.52 21.53 41.52 24.32 38.53 23.79C35.54 23.26 33.68 19.62 34.38 15.64C35.08 11.67 38.08 8.88 41.07 9.41C44.06 9.94 45.92 13.58 45.22 17.56ZM54.08 31.69C52.29 35.05 48.75 36.67 46.16 35.29C43.58 33.92 42.93 30.08 44.72 26.71C46.51 23.35 50.05 21.73 52.64 23.11C55.22 24.48 55.87 28.32 54.08 31.69Z'/%3E%3C/svg%3E") 9 6, pointer;
+  }
+
+  :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="range"]), textarea, [contenteditable="true"]) {
+    cursor: text;
+  }
+
+  :is(p, h1, h2, h3, h4, li, blockquote, figcaption, dd, dt) {
+    cursor: inherit;
+  }
+}
+
+/* ==========================================================================
+   Original Typography Helpers (Fraunces SOFT/WONK + Shantell Sans)
+   ========================================================================== */
+.font-plush {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.font-plush-text {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 36;
+}
+
+.font-scrawl {
+  font-family: var(--font-script);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  letter-spacing: 0px;
+  font-weight: 500;
+}
+
+.text-huge {
+  font-size: clamp(2.6rem, 6.4vw, 6.25rem);
+}
+
+.text-big {
+  font-size: clamp(2rem, 4.2vw, 4rem);
+}
+
+.text-lede {
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  line-height: 1.5;
+}
+
+.gutter {
+  padding-inline: var(--gutter);
+}
+
+/* ==========================================================================
+   Original Surface Patterns & Textures
+   ========================================================================== */
+/* Quilted diagonal grid for hero bottom quilt strip */
 .diamond-quilt-bg {
-  background-color: #FAF0DC;
-  background-image: url("data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 0 L44 22 L22 44 L0 22 Z' fill='none' stroke='%23DFC8A6' stroke-width='1' stroke-opacity='0.55'/%3E%3C/svg%3E");
-  background-size: 44px 44px;
-}
-
-/* Subtle paw wallpaper inside the WhatsApp mobile mockup */
-.paw-wallpaper-bg {
-  background-color: #F7EFE2;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23DFC9A8' fill-opacity='0.45'%3E%3Cellipse cx='30' cy='36' rx='6' ry='5'/%3E%3Ccircle cx='22' cy='27' r='2.5'/%3E%3Ccircle cx='30' cy='24' r='2.5'/%3E%3Ccircle cx='38' cy='27' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 60px 60px;
-}
-
-/* Dark wood clapboard siding for Happy Families Polaroid wall */
-.wood-siding-bg {
-  background-color: #5C3018;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    #5C3018 0px,
-    #5C3018 46px,
-    #482310 46px,
-    #482310 48px
-  );
-}
-
-/* Tiny warm starlight speckles for dark sections */
-.night-stars-bg {
-  background-color: #331C10;
+  background-color: #fff1d8;
   background-image:
-    radial-gradient(circle at 12% 18%, rgba(244, 208, 138, 0.45) 1.5px, transparent 2px),
-    radial-gradient(circle at 78% 12%, rgba(244, 208, 138, 0.35) 1px, transparent 1.5px),
-    radial-gradient(circle at 88% 44%, rgba(244, 208, 138, 0.45) 1.5px, transparent 2px),
-    radial-gradient(circle at 24% 66%, rgba(244, 208, 138, 0.35) 1px, transparent 1.5px),
-    radial-gradient(circle at 63% 78%, rgba(244, 208, 138, 0.4) 1.5px, transparent 2px),
-    radial-gradient(circle at 41% 32%, rgba(244, 208, 138, 0.25) 1px, transparent 1.5px);
-  background-size: 380px 380px;
+    repeating-linear-gradient(45deg, transparent 0 46px, #2a170e12 46px 48px),
+    repeating-linear-gradient(-45deg, transparent 0 46px, #2a170e12 46px 48px);
 }
 
-/* Button presets matching TeddyPups pill aesthetic */
-.btn-terracotta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  background-color: #9E4B1D;
-  color: #FFFFFF;
-  font-weight: 700;
-  padding: 0.72rem 1.65rem;
-  box-shadow: 0 3px 0 #6B2F0E;
-  transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+/* Overlapping scalloped passport paper security pattern */
+.passport-paper-bg {
+  background-color: #fff8ea;
+  background-image:
+    radial-gradient(circle at 0px 0px, transparent 0px, transparent 17px, rgba(194, 98, 43, 0.08) 17px, rgba(194, 98, 43, 0.08) 18.5px, transparent 18.5px),
+    radial-gradient(circle at 18px 18px, transparent 0px, transparent 17px, rgba(194, 98, 43, 0.06) 17px, rgba(194, 98, 43, 0.06) 18.5px, transparent 18.5px);
+  background-size: 36px 36px;
 }
 
-.btn-terracotta:hover {
-  background-color: #873E15;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 0 #6B2F0E;
+/* Tilted paw wallpaper inside the WhatsApp mobile mockup */
+.paw-wallpaper-bg {
+  background-color: #fbecd2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='46' height='46'%3E%3Cpath fill='%23c2622b' fill-opacity='.09' transform='rotate(-20 32 32)' d='M32 30.5c-7.6 0-15.6 8.3-15.6 15.5 0 5.4 4.2 8.3 9.2 8.3 2.6 0 4.5-1.1 6.4-1.1s3.8 1.1 6.4 1.1c5 0 9.2-2.9 9.2-8.3 0-7.2-8-15.5-15.6-15.5zM14.6 22.3c-3 .1-5.6 3.3-5.6 7s2.6 6.9 5.6 6.9 5.6-3.2 5.6-6.9-2.6-7-5.6-7zM24.2 9.3c-3 0-5.6 3.3-5.6 7.3s2.5 7.3 5.6 7.3 5.6-3.3 5.6-7.3-2.5-7.3-5.6-7.3zM39.8 9.3c-3.1 0-5.6 3.3-5.6 7.3s2.5 7.3 5.6 7.3 5.6-3.3 5.6-7.3-2.5-7.3-5.6-7.3zM49.4 22.3c-3 0-5.6 3.3-5.6 7s2.6 6.9 5.6 6.9 5.6-3.2 5.6-6.9-2.6-7-5.6-7z'/%3E%3C/svg%3E");
+  background-size: 46px 46px;
 }
 
-.btn-terracotta:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 0 #6B2F0E;
+/* Dark wood clapboard siding with warm lantern glow for Happy Families Polaroid wall */
+.wood-siding-bg {
+  background-color: #6c3b22;
+  background-image:
+    radial-gradient(55% 45% at 12% 100%, rgba(255, 205, 110, 0.28), transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 46px, rgba(42, 23, 14, 0.14) 46px, rgba(42, 23, 14, 0.14) 48px),
+    linear-gradient(#80482a, #6c3b22);
 }
 
-.btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  background-color: #1B7F4B;
-  color: #FFFFFF;
-  font-weight: 700;
-  padding: 0.72rem 1.65rem;
-  box-shadow: 0 3px 0 #105230;
-  transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+/* Night sky base (stars rendered as twinkling SVG elements) */
+.night-stars-bg {
+  background-color: #2f1a10;
 }
 
-.btn-whatsapp:hover {
-  background-color: #166A3E;
-  transform: translateY(-1px);
+/* ==========================================================================
+   Original Pill Buttons & Pounce Hover Transitions
+   ========================================================================== */
+@layer components {
+  .btn-terracotta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    border-radius: 9999px;
+    background-color: #a24a1a;
+    color: #fffdf8;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    line-height: 1.1;
+    padding: 0.85rem 1.6rem;
+    box-shadow: 0 0.5rem 0 -0.15rem #2a170e;
+    transition:
+      transform 0.35s var(--ease-pounce),
+      background-color 0.25s ease,
+      box-shadow 0.35s var(--ease-silk);
+  }
+
+  .btn-terracotta:hover {
+    background-color: #934115;
+    transform: translateY(-2px) rotate(-1deg);
+    box-shadow: 0 0.7rem 0 -0.15rem #2a170e;
+  }
+
+  .btn-terracotta:active {
+    transform: scale(0.96);
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    border-radius: 9999px;
+    background-color: #1f7a4d;
+    color: #ffffff;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    line-height: 1.1;
+    padding: 0.85rem 1.6rem;
+    box-shadow: 0 0.5rem 0 -0.15rem #2a170e;
+    transition:
+      transform 0.35s var(--ease-pounce),
+      background-color 0.25s ease,
+      box-shadow 0.35s var(--ease-silk);
+  }
+
+  .btn-whatsapp:hover {
+    background-color: #196841;
+    transform: translateY(-2px) rotate(1deg);
+    box-shadow: 0 0.7rem 0 -0.15rem #2a170e;
+  }
+
+  .btn-whatsapp:active {
+    transform: scale(0.96);
+  }
+
+  .btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    border-radius: 9999px;
+    border: 2px solid #2a170e;
+    background-color: transparent;
+    color: #2a170e;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    line-height: 1.1;
+    padding: 0.85rem 1.6rem;
+    transition:
+      transform 0.35s var(--ease-pounce),
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+
+  .btn-outline-dark:hover {
+    background-color: #2a170e;
+    color: #fffdf8;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-dark:active {
+    transform: scale(0.96);
+  }
+
+  .btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    border-radius: 9999px;
+    border: 2px solid #fffdf8;
+    background-color: transparent;
+    color: #fffdf8;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    line-height: 1.1;
+    padding: 0.85rem 1.6rem;
+    transition:
+      transform 0.35s var(--ease-pounce),
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+
+  .btn-outline-light:hover {
+    background-color: #fffdf8;
+    color: #2a170e;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-light:active {
+    transform: scale(0.96);
+  }
 }
 
-.btn-outline-dark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  border: 1.5px solid #4A2A18;
-  background-color: rgba(255, 255, 255, 0.45);
-  color: #361D10;
-  font-weight: 600;
-  padding: 0.72rem 1.65rem;
-  transition: background-color 150ms ease, transform 150ms ease;
+/* ==========================================================================
+   Original Component & Animation Keyframes
+   ========================================================================== */
+@keyframes tp-sunrise {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0%);
+  }
 }
 
-.btn-outline-dark:hover {
-  background-color: rgba(54, 29, 16, 0.08);
-  transform: translateY(-1px);
+@keyframes tp-peek {
+  0% {
+    opacity: 0;
+    transform: translateY(42%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
-.btn-outline-light {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  background-color: rgba(255, 255, 255, 0.04);
-  color: #FFFFFF;
-  font-weight: 600;
-  padding: 0.72rem 1.65rem;
-  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+@keyframes tp-twinkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(20deg);
+  }
 }
 
-.btn-outline-light:hover {
-  background-color: rgba(255, 255, 255, 0.14);
-  border-color: #FFFFFF;
-  transform: translateY(-1px);
+@keyframes tp-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(8deg);
+  }
+}
+
+@keyframes tp-plane-bob {
+  0%, 100% {
+    transform: translateY(0px) rotate(-14deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-17deg);
+  }
+}
+
+@keyframes tp-dot {
+  0%, 60%, 100% {
+    transform: translateY(0px);
+  }
+  30% {
+    transform: translateY(-0.35rem);
+  }
+}
+
+@keyframes tp-msg-in {
+  0% {
+    opacity: 0;
+    transform: translateY(0.8rem) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tp-stamp-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.7) rotate(calc(var(--stamp-tilt, 0deg) - 16deg));
+  }
+  55% {
+    opacity: 0.95;
+    transform: scale(0.93) rotate(var(--stamp-tilt, 0deg));
+  }
+  75% {
+    transform: scale(1.03) rotate(var(--stamp-tilt, 0deg));
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1) rotate(var(--stamp-tilt, 0deg));
+  }
+}
+
+@keyframes tp-breathe {
+  0%, 100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 1.016);
+  }
+}
+
+@keyframes tp-blink-open {
+  0%, 92%, 97%, 100% { opacity: 1; }
+  94.5% { opacity: 0; }
+}
+
+@keyframes tp-blink-shut {
+  0%, 92%, 97%, 100% { opacity: 0; }
+  94.5% { opacity: 1; }
+}
+
+@keyframes tp-ear-twitch {
+  0%, 84%, 100% { transform: rotate(0deg); }
+  87% { transform: rotate(-10deg); }
+  90% { transform: rotate(5deg); }
+  93% { transform: rotate(-2deg); }
+}
+
+@keyframes tp-sun-set {
+  0% { transform: translateY(-45%); }
+  100% { transform: translateY(25%); }
+}
+
+/* Hero radial glow & staggered arches */
+.tp-hero-sun {
+  background: radial-gradient(
+    circle,
+    rgba(242, 190, 107, 0.42) 0%,
+    rgba(251, 227, 180, 0.3) 38%,
+    transparent 66%
+    rgba(242, 190, 107, 0.52) 0%,
+    rgba(251, 227, 180, 0.38) 32%,
+    rgba(251, 227, 180, 0.12) 55%,
+    transparent 68%
+  );
+  animation: tp-sunrise 2.6s var(--ease-silk) both;
+}
+
+.tp-arch-enter {
+  animation: tp-peek 0.72s var(--ease-pounce) both;
+  animation-delay: calc(0.18s + var(--arch-i, 0) * 90ms);
+}
+
+/* Twinkle stars & floating elements */
+.tp-twinkle {
+  animation: tp-twinkle 3.2s ease-in-out infinite;
+}
+
+.tp-wonder-float {
+  animation: tp-float 3.4s ease-in-out infinite;
+}
+
+.tp-plane-bob {
+  animation: tp-plane-bob 3.2s ease-in-out infinite;
+}
+
+.tp-typing-dot {
+  animation: tp-dot 0.9s ease-in-out infinite;
+}
+.tp-typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.tp-typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.tp-msg-anim {
+  animation: tp-msg-in 0.5s var(--ease-pounce) both;
+}
+
+/* Distressed ink passport stamp */
+.tp-stamp-ink {
+  mix-blend-mode: multiply;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size: 160px 160px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 160px 160px;
+}
+
+@supports (animation-timeline: view()) {
+  .tp-stamp-ink {
+    animation: tp-stamp-in linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 42%;
+  }
+
+  .tp-sun-scroll {
+    animation: tp-sun-set linear both;
+    animation-timeline: view();
+    animation-range: entry exit 30%;
+  }
+}
+
+/* Jagged realistic masking tape */
+.tp-tape-jagged {
+  clip-path: polygon(0% 10%, 3% 0%, 50% 4%, 97% 0%, 100% 14%, 98% 40%, 100% 66%, 97% 100%, 50% 96%, 3% 100%, 0% 86%, 2% 52%);
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.16) 3px 5px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28), transparent 30%, rgba(255, 255, 255, 0.18) 70%, transparent);
+}
+
+/* Living mascot animations */
+.tp-mascot-breathe {
+  transform-origin: 50% 70%;
+  animation: tp-breathe 3.8s ease-in-out infinite;
+}
+.tp-mascot-eye-open {
+  animation: tp-blink-open 6.2s ease infinite;
+}
+.tp-mascot-eye-shut {
+  animation: tp-blink-shut 6.2s ease infinite;
+}
+.tp-mascot-ear-r {
+  transform-box: view-box;
+  transform-origin: 95px 38px;
+  animation: tp-ear-twitch 7.4s ease-in-out 2.2s infinite;
+}
+
+/* Meet the pups arched door wood grooves & spring swing */
+.tp-door-wood {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(25% - 1.5px),
+    rgba(42, 23, 14, 0.18) calc(25% - 1.5px) 25%
+  );
+  transition: transform 1.05s cubic-bezier(0.3, 1.32, 0.48, 1) 50ms;
+}
+
+/* Wooden signpost planks */
+.tp-wood-plank {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(42, 23, 14, 0.09) 9px 10px),
+    linear-gradient(#e4a85b, #d38f45);
+}
+
+/* Crescent moon with shadow cutout */
+.tp-crescent-moon {
+  box-shadow: inset -0.85rem 0.25rem 0 0 #fbe3b4;
+  filter: drop-shadow(rgba(251, 227, 180, 0.35) 0px 0px 18px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

@@ -4,12 +4,25 @@ interface ScallopedDividerProps {
   className?: string;
 }
 
-/** Playful scalloped cloud wave divider separating the hero arches from the diamond quilt band. */
+/** Playful scalloped cloud wave divider with inner dashed stitch line separating the hero arches from the quilt band. */
 export function ScallopedDivider({
-  fillColor = "#FAF0DC",
-  strokeColor = "#B89B7A",
-  className = "w-full h-9",
+  fillColor = "#fff1d8",
+  strokeColor = "#2a170e",
+  className = "w-full h-10 sm:h-11 block",
 }: ScallopedDividerProps) {
+  // 20 smooth semicircular scallops across 1200 viewBox width (60 units each)
+  const arches = Array.from({ length: 20 }, (_, i) => {
+    const x1 = i * 60;
+    const x2 = x1 + 60;
+    return `A 30 28 0 0 1 ${x2} 36`;
+  }).join(" ");
+
+  const innerStitches = Array.from({ length: 20 }, (_, i) => {
+    const x1 = i * 60 + 7;
+    const x2 = i * 60 + 53;
+    return `M ${x1} 37 A 23 21 0 0 1 ${x2} 37`;
+  }).join(" ");
+
   return (
     <svg
       viewBox="0 0 1200 44"
@@ -17,17 +30,22 @@ export function ScallopedDivider({
       className={className}
       aria-hidden="true"
     >
+      <path d={`M 0 44 L 0 36 ${arches} L 1200 44 Z`} fill={fillColor} />
       <path
-        d="M0,44 L0,24 Q30,0 60,24 Q90,0 120,24 Q150,0 180,24 Q210,0 240,24 Q270,0 300,24 Q330,0 360,24 Q390,0 420,24 Q450,0 480,24 Q510,0 540,24 Q570,0 600,24 Q630,0 660,24 Q690,0 720,24 Q750,0 780,24 Q810,0 840,24 Q870,0 900,24 Q930,0 960,24 Q990,0 1020,24 Q1050,0 1080,24 Q1110,0 1140,24 Q1170,0 1200,24 L1200,44 Z"
-        fill={fillColor}
-      />
-      <path
-        d="M0,24 Q30,0 60,24 Q90,0 120,24 Q150,0 180,24 Q210,0 240,24 Q270,0 300,24 Q330,0 360,24 Q390,0 420,24 Q450,0 480,24 Q510,0 540,24 Q570,0 600,24 Q630,0 660,24 Q690,0 720,24 Q750,0 780,24 Q810,0 840,24 Q870,0 900,24 Q930,0 960,24 Q990,0 1020,24 Q1050,0 1080,24 Q1110,0 1140,24 Q1170,0 1200,24"
+        d={`M 0 36 ${arches}`}
         fill="none"
         stroke={strokeColor}
-        strokeWidth="2"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d={innerStitches}
+        fill="none"
+        stroke="rgba(42, 23, 14, 0.28)"
+        strokeWidth="1.5"
+        strokeDasharray="4 4"
+        strokeLinecap="round"
       />
     </svg>
   );
 }
-

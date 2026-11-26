@@ -1,53 +1,20 @@
 import { MascotPuppy } from "./MascotPuppy";
 
-/** Center wooden signpost pointing between "Puppies in Dubai" and "Imported for you". */
+/** Tall center wooden signpost pole with mascot puppy peeking beside the base. */
 export function WoodenSignpost() {
   return (
-    <div className="relative flex flex-col items-center select-none" aria-hidden="true">
-      <svg viewBox="0 0 420 145" className="w-[310px] sm:w-[390px] h-auto drop-shadow-sm">
-        {/* Vertical wooden post */}
-        <rect x="200" y="10" width="20" height="135" rx="4" fill="#9E6234" stroke="#472716" strokeWidth="2.5" />
-        {/* Left directional plank */}
-        <path
-          d="M204 26 L42 26 L18 51 L42 76 L204 76 Z"
-          fill="#C58952"
-          stroke="#472716"
-          strokeWidth="2.5"
-        />
-        <text
-          x="118"
-          y="57"
-          textAnchor="middle"
-          fill="#361D10"
-          fontSize="17"
-          fontWeight="800"
-          fontFamily="var(--font-display)"
-        >
-          Puppies in Dubai
-        </text>
-        {/* Right directional plank */}
-        <path
-          d="M216 38 L378 38 L402 63 L378 88 L216 88 Z"
-          fill="#D49B63"
-          stroke="#472716"
-          strokeWidth="2.5"
-        />
-        <text
-          x="304"
-          y="69"
-          textAnchor="middle"
-          fill="#361D10"
-          fontSize="17"
-          fontWeight="800"
-          fontFamily="var(--font-display)"
-        >
-          Imported for you
-        </text>
-      </svg>
-      <div className="-mt-8 md:mt-20">
-        <MascotPuppy pose="walking" className="w-20 h-20" animateFloat />
+    <div className="relative flex flex-col items-center justify-between lg:h-full select-none" aria-hidden="true">
+      {/* Vertical wooden post */}
+      <div
+        className="hidden lg:block w-6 flex-1 min-h-[26rem] rounded-t-lg rounded-b-sm border-[3px] border-[#2a170e]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(90deg, transparent 0 5px, rgba(42,23,14,0.12) 5px 6px), linear-gradient(90deg, #d38f45, #b8742f)",
+        }}
+      />
+      <div className="lg:absolute lg:-bottom-10 lg:left-1/2 lg:-translate-x-[45%]">
+        <MascotPuppy pose="walking" className="w-28 h-28 sm:w-36 sm:h-32" animateFloat />
       </div>
     </div>
   );
 }
-

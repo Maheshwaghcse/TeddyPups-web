@@ -16,6 +16,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/postcss": "^4.0.9",
     "@types/node": "^22.10.7",
     "@types/react": "^19.0.10",
@@ -24,4 +25,3 @@
     "typescript": "^5.7.3"
   }
 }
-
