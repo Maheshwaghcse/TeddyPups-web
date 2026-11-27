@@ -3,15 +3,53 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { PuppyDoorCard } from "@/components/puppies/PuppyDoorCard";
-import { MascotPuppy } from "@/components/illustrations/MascotPuppy";
+import { PuppyScrollJourney } from "@/components/home/PuppyScrollJourney";
 import type { Puppy } from "@/lib/types";
+
+const LOCAL_PUPPY_IMAGES = [
+  "/images/puppies/b942a5_50f0ae67c9ff437d911597d52a9e63b3-mv2.webp",
+  "/images/puppies/b942a5_344e49c6c34940d2b09a3ddd5c2e3234-mv2.webp",
+  "/images/puppies/b942a5_967bb346583b4146acb56607f5da5f21-mv2.webp",
+  "/images/puppies/b942a5_14376a216177484dbbb27995d0f6aeb7-mv2.webp",
+  "/images/puppies/b942a5_556841b9a73942e5a9d782a683f3bc68-mv2.webp",
+  "/images/puppies/b942a5_a8d264c1aa754d80bc7c98917dfd1fda-mv2.webp",
+  "/images/puppies/b942a5_bb73ebbb952047988f944f3a8e3052bd-mv2.webp",
+  "/images/puppies/b942a5_dcb8eb174915463ea0c40c58b7b0e406-mv2.webp",
+];
 
 interface MeetPupsSectionProps {
   puppies: Puppy[];
 }
 
-export function MeetPupsSection({ puppies }: MeetPupsSectionProps) {
-  const featured = puppies.slice(0, 8);
+export function MeetPupsSection({ puppies = [] }: MeetPupsSectionProps) {
+  const featured: Puppy[] = puppies.slice(0, 8).map((puppy, idx) => {
+    const localImg = LOCAL_PUPPY_IMAGES[idx % LOCAL_PUPPY_IMAGES.length];
+    const raw = puppy as unknown as Record<string, unknown>;
+    const currentUrl =
+      (raw.imageUrl as string) ||
+      (raw.image as string) ||
+      (raw.photo as string) ||
+      "";
+
+    // Use local webp if missing, SVG placeholder, or not pointing to local /images/
+    const useLocal =
+      !currentUrl ||
+      currentUrl.endsWith(".svg") ||
+      !currentUrl.startsWith("/images/");
+
+    const finalImg = useLocal ? localImg : currentUrl;
+
+    return {
+      ...puppy,
+      imageUrl: finalImg,
+      image: finalImg,
+      photo: finalImg,
+      photoUrl: finalImg,
+      src: finalImg,
+      images: [finalImg],
+    } as unknown as Puppy;
+  });
+
   const pinRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -47,7 +85,13 @@ export function MeetPupsSection({ puppies }: MeetPupsSectionProps) {
   const translateX = -progress * maxShift;
 
   return (
-    <section className="relative bg-gradient-to-b from-[#fff1d8] to-[#fbe3b4]">
+    <section
+      data-puppy-section="meet-pups"
+      className="relative bg-gradient-to-b from-[#fff1d8] to-[#fbe3b4]"
+    >
+      {/* Continuous Start-to-End Scroll Dog + Paw Print Trail */}
+      <PuppyScrollJourney />
+
       {/* Desktop Pinned Horizontal Hallway (lg+) */}
       <div
         ref={pinRef}
@@ -78,11 +122,13 @@ export function MeetPupsSection({ puppies }: MeetPupsSectionProps) {
               style={{ transform: `translate3d(${translateX}px, 0, 0)` }}
             >
               {featured.map((puppy, idx) => {
-                // Open doors progressively as the hallway scrolls across the focal zone
                 const doorCenter = (idx + 0.35) / (featured.length + 0.4);
                 const inFocus = Math.abs(progress - doorCenter) < 0.16;
                 return (
-                  <div key={puppy._id} className="w-[clamp(12rem,min(16vw,25vh),16.5rem)] shrink-0">
+                  <div
+                    key={puppy._id}
+                    className="w-[clamp(12rem,min(16vw,25vh),16.5rem)] shrink-0"
+                  >
                     <PuppyDoorCard
                       puppy={{
                         ...puppy,
@@ -107,14 +153,6 @@ export function MeetPupsSection({ puppies }: MeetPupsSectionProps) {
                   </span>
                 </Link>
               </div>
-            </div>
-
-            {/* Walking Mascot on Floorboard */}
-            <div
-              className="pointer-events-none absolute left-[13vw] bottom-[calc(clamp(5rem,13vh,8rem)*0.5)] z-20"
-              style={{ transform: `translateX(${progress * 26}px)` }}
-            >
-              <MascotPuppy pose="walking" className="w-28 h-28 xl:w-36 xl:h-32" animateFloat />
             </div>
 
             {/* Horizontal Wooden Floorboard Strip */}

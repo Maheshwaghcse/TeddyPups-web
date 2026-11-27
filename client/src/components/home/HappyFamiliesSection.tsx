@@ -1,14 +1,34 @@
+
 import Link from "next/link";
-import { MascotPuppy } from "@/components/illustrations/MascotPuppy";
 import { PolaroidCard } from "@/components/families/PolaroidCard";
 import type { HappyFamily } from "@/lib/types";
+
+const LOCAL_FAMILY_IMAGES = [
+  "/images/families/27b888_4af83a5cffb44045bcab615b0cbc237c-mv2.webp",
+  "/images/families/27b888_7d940ce5701f48d98327e4a242b53ac4-mv2.webp",
+  "/images/families/27b888_082e47dfd8144423a96dc70d966fa5b2-mv2.webp",
+  "/images/families/27b888_89af9713331443c3b9f4b72a83d646e3-mv2.webp",
+  "/images/families/27b888_96b9eb6428164f41b124137673bc865c-mv2.webp",
+  "/images/families/27b888_522e394293a845bcae93adec46bf499c-mv2.webp",
+  "/images/families/27b888_927dffc200a44f9dafcb953b765beec0-mv2.webp",
+  "/images/families/27b888_3594e056bf964a7a839a1bd5ac0c859e-mv2.webp",
+];
 
 interface HappyFamiliesSectionProps {
   families: HappyFamily[];
 }
 
 export function HappyFamiliesSection({ families }: HappyFamiliesSectionProps) {
-  const featuredPolaroids = families.slice(0, 8);
+  const featuredPolaroids = families.slice(0, 8).map((family, idx) => {
+    const localImg = LOCAL_FAMILY_IMAGES[idx % LOCAL_FAMILY_IMAGES.length];
+    const currentUrl = (family as unknown as { imageUrl?: string }).imageUrl;
+    const needsLocalWebp = !currentUrl || currentUrl.endsWith(".svg");
+    return {
+      ...family,
+      ...(needsLocalWebp ? { imageUrl: localImg, image: localImg } : {}),
+    };
+  });
+
   const testimonial =
     families.find((f) => f.clientName?.includes("Sarah")) ??
     families.find((f) => Boolean(f.testimonialQuote)) ?? {
@@ -18,7 +38,10 @@ export function HappyFamiliesSection({ families }: HappyFamiliesSectionProps) {
     };
 
   return (
-    <section className="relative bg-gradient-to-b from-[#a65a30] to-[#4d2b19] pt-[clamp(3rem,7vh,5rem)] text-[#fffdf8] overflow-x-clip">
+    <section
+      data-puppy-section="happy-families"
+      className="relative bg-gradient-to-b from-[#a65a30] to-[#4d2b19] pt-[clamp(3rem,7vh,5rem)] text-[#fffdf8] overflow-x-clip"
+    >
       <div className="gutter max-w-[110rem] mx-auto">
         {/* Header + Speech Bubble Testimonial */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-end mb-12">
@@ -37,10 +60,6 @@ export function HappyFamiliesSection({ families }: HappyFamiliesSectionProps) {
           </div>
 
           <div className="lg:col-span-6 lg:justify-self-end w-full max-w-[34rem] relative">
-            <div className="hidden sm:block absolute -left-16 -top-8 z-10 pointer-events-none">
-              <MascotPuppy pose="walking" className="w-24 h-24" animateFloat />
-            </div>
-
             {/* White Speech Bubble Quote */}
             <blockquote className="relative bg-[#fffdf8] text-[#2a170e] rounded-[1.8rem_1.8rem_1.8rem_0.5rem] p-5 sm:p-6 shadow-[8px_10px_rgba(20,10,5,0.22)] border-[3px] border-[#2a170e] rotate-[1.2deg]">
               <p className="font-plush-text text-[clamp(1.02rem,1.25vw,1.2rem)] leading-[1.5] text-[#2a170e]">
@@ -105,11 +124,6 @@ export function HappyFamiliesSection({ families }: HappyFamiliesSectionProps) {
               }}
               aria-hidden="true"
             />
-
-            {/* Mascot next to center door */}
-            <div className="hidden sm:block absolute bottom-0 left-[calc(50%+clamp(3.5rem,6vw,5.5rem))] z-10 pointer-events-none">
-              <MascotPuppy pose="standing" className="w-28 h-24 sm:w-32 sm:h-28" animateFloat />
-            </div>
 
             <Link
               href="/happy-families"

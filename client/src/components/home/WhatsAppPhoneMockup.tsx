@@ -59,11 +59,10 @@ export function WhatsAppPhoneMockup({ activeStep = 1 }: WhatsAppPhoneMockupProps
                       key={breed}
                       type="button"
                       onClick={() => setSelectedBreed(breed)}
-                      className={`px-2.5 py-0.5 min-h-[1.8rem] rounded-full text-[0.8rem] font-[650] border-[1.5px] border-[#2a170e] transition-colors ${
-                        active
+                      className={`px-2.5 py-0.5 min-h-[1.8rem] rounded-full text-[0.8rem] font-[650] border-[1.5px] border-[#2a170e] transition-colors ${active
                           ? "bg-[#a24a1a] text-[#fffdf8]"
                           : "bg-[#fbe3b4] text-[#2a170e] hover:bg-[#f2be6b]"
-                      }`}
+                        }`}
                     >
                       {breed}
                     </button>
@@ -72,15 +71,25 @@ export function WhatsAppPhoneMockup({ activeStep = 1 }: WhatsAppPhoneMockupProps
               </div>
             </div>
 
-            {/* Step 2 Real Photos Preview Bubble */}
+            {/* Step 2 Real Photos Preview Bubble (Using your local .webp puppy photos) */}
             {activeStep >= 2 && (
               <div className="tp-msg-anim mr-auto max-w-[86%] rounded-[1.05rem] rounded-bl-[0.25rem] border-2 border-[#2a170e] bg-[#fffdf8] p-1.5 text-[0.82rem] text-[#2a170e]">
                 <div className="grid grid-cols-2 gap-1 w-[11.5rem] mb-1.5">
                   <div className="relative aspect-square rounded-[0.6rem] overflow-hidden bg-[#fbe3b4]">
-                    <Image src="/images/puppies/maltipoo-cream.svg" alt="Maltipoo preview" fill className="object-cover" />
+                    <Image
+                      src="/images/puppies/b942a5_7ce7e7bd18424b6c8fb16dd30113ade2-mv2.webp"
+                      alt="Maltipoo preview"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="relative aspect-square rounded-[0.6rem] overflow-hidden bg-[#fbe3b4]">
-                    <Image src="/images/puppies/pomeranian-orange.svg" alt="Pomeranian preview" fill className="object-cover" />
+                    <Image
+                      src="/images/puppies/b942a5_2b5dcece361b4589890ae920c66a1b70-mv2.webp"
+                      alt="Pomeranian preview"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
                 <p className="px-1.5 pb-1 leading-snug">

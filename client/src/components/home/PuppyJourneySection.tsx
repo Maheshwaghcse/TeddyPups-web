@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { MascotPuppy } from "@/components/illustrations/MascotPuppy";
 import { WhatsAppPhoneMockup } from "./WhatsAppPhoneMockup";
 
 const JOURNEY_STEPS = [
@@ -51,7 +50,10 @@ export function PuppyJourneySection() {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-b from-[#f7d18d] to-[#f0b866] py-[clamp(4.5rem,10vh,7rem)]">
+    <section
+      data-puppy-section="puppy-journey"
+      className="relative bg-gradient-to-b from-[#f7d18d] to-[#f0b866] py-[clamp(4.5rem,10vh,7rem)]"
+    >
       <div className="gutter max-w-[110rem] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-[clamp(3rem,8vw,9rem)] items-start">
           {/* Left Column: Title + Scroll/Click-Activated 3-Step Concierge */}
@@ -79,16 +81,14 @@ export function PuppyJourneySection() {
                     data-step={step.number}
                     type="button"
                     onClick={() => setActiveStep(step.number)}
-                    className={`w-full text-left flex items-start gap-5 group focus:outline-none lg:min-h-[26vh] transition-opacity duration-500 ${
-                      isActive || isDone ? "opacity-100" : "opacity-45 hover:opacity-80"
-                    }`}
+                    className={`w-full text-left flex items-start gap-5 group focus:outline-none lg:min-h-[26vh] transition-opacity duration-500 ${isActive || isDone ? "opacity-100" : "opacity-45 hover:opacity-80"
+                      }`}
                   >
                     <span
-                      className={`w-[3.8rem] h-[3.8rem] rounded-full border-[3px] border-[#2a170e] flex items-center justify-center font-plush text-[1.9rem] leading-none shrink-0 transition-all duration-450 ease-[cubic-bezier(.34,1.56,.64,1)] ${
-                        isActive
+                      className={`w-[3.8rem] h-[3.8rem] rounded-full border-[3px] border-[#2a170e] flex items-center justify-center font-plush text-[1.9rem] leading-none shrink-0 transition-all duration-450 ease-[cubic-bezier(.34,1.56,.64,1)] ${isActive
                           ? "bg-[#a24a1a] text-[#fffdf8] scale-110"
                           : "bg-[#fffdf8] text-[#2a170e] group-hover:bg-[#fbe3b4]"
-                      }`}
+                        }`}
                     >
                       {step.number}
                     </span>
@@ -114,9 +114,6 @@ export function PuppyJourneySection() {
 
           {/* Right Column: Sticky Interactive Tilted WhatsApp Phone Mockup */}
           <div className="lg:col-span-6 lg:sticky lg:top-[calc(var(--header-h)+5vh)] flex flex-col items-center relative">
-            <div className="hidden lg:block absolute -left-8 xl:-left-12 -bottom-4 z-10 pointer-events-none">
-              <MascotPuppy pose="sitting" className="w-36 h-32" animateFloat />
-            </div>
             <WhatsAppPhoneMockup activeStep={activeStep} />
           </div>
         </div>

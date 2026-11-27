@@ -1,129 +1,229 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { MascotPuppy } from "@/components/illustrations/MascotPuppy";
-import { ScallopedDivider } from "@/components/illustrations/ScallopedDivider";
+import { useState } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
-const HERO_ARCHES = [
-  { src: "/images/puppies/cavapoo-copper.svg", label: "Cavapoo", tilt: "-5deg", heightClass: "h-[92px] sm:h-[160px] lg:h-[200px]", hideMobile: true },
-  { src: "/images/puppies/pomeranian-orange.svg", label: "Max", tilt: "3deg", heightClass: "h-[95px] sm:h-[195px] lg:h-[246px]", hideMobile: false },
-  { src: "/images/puppies/pomeranian-white.svg", label: "Pomeranian", tilt: "-2.5deg", heightClass: "h-[86px] sm:h-[162px] lg:h-[200px]", hideMobile: false },
-  { isMascot: true, label: "arf!", tilt: "0deg", heightClass: "h-[104px] sm:h-[180px] lg:h-[224px]", hideMobile: false },
-  { src: "/images/puppies/shihtzu-bicolor.svg", label: "Shih Tzu", tilt: "2.5deg", heightClass: "h-[90px] sm:h-[170px] lg:h-[214px]", hideMobile: false },
-  { src: "/images/puppies/maltipoo-cream.svg", label: "Korean Teacup Maltipoo", tilt: "-3deg", heightClass: "h-[96px] sm:h-[193px] lg:h-[250px]", hideMobile: false },
-  { src: "/images/puppies/poodle-chocolate.svg", label: "Toy Poodle", tilt: "4.5deg", heightClass: "h-[86px] sm:h-[155px] lg:h-[192px]", hideMobile: true },
+interface ArchPortrait {
+  breed: string;
+  src: string;
+  fallbackSrc: string;
+  bg: string;
+}
+
+const ARCH_PORTRAITS: ArchPortrait[] = [
+  {
+    breed: "Maltipoo",
+    src: "/images/puppies/b942a5_0b2c0c0d178c4005acbe28725a5ea573-mv2.webp",
+    fallbackSrc: "/images/puppies/b942a5_50f0ae67c9ff437d911597d52a9e63b3-mv2.webp",
+    bg: "#e9d2b0",
+  },
+  {
+    breed: "Toy Poodle",
+    src: "/images/puppies/b942a5_2b5dcece361b4589890ae920c66a1b70-mv2.webp",
+    fallbackSrc: "/images/puppies/b942a5_344e49c6c34940d2b09a3ddd5c2e3234-mv2.webp",
+    bg: "#f2d6ae",
+  },
+  {
+    breed: "Shih Tzu",
+    src: "/images/puppies/b942a5_4b8cfb8204d24eadaf524332aba1dc15-mv2.webp",
+    fallbackSrc: "/images/puppies/b942a5_967bb346583b4146acb56607f5da5f21-mv2.webp",
+    bg: "#f3c78e",
+  },
+  {
+    breed: "Teddy",
+    src: "",
+    fallbackSrc: "",
+    bg: "#f5dfb8",
+  },
+  {
+    breed: "Pomeranian",
+    src: "/images/puppies/b942a5_6a5617708d75408b8f73725080ed0149-mv2.webp",
+    fallbackSrc: "/images/puppies/b942a5_14376a216177484dbbb27995d0f6aeb7-mv2.webp",
+    bg: "#e9d2b0",
+  },
+  {
+    breed: "Yorkshire",
+    src: "/images/puppies/b942a5_7ce7e7bd18424b6c8fb16dd30113ade2-mv2.webp",
+    fallbackSrc: "/images/puppies/b942a5_556841b9a73942e5a9d782a683f3bc68-mv2.webp",
+    bg: "#f2d6ae",
+  },
+  {
+    breed: "Maltese",
+    src: "/images/puppies/b942a5_7dd33c9b78c04f78a6a1c7386fb55620-mv2.webp",
+    fallbackSrc: "/images/puppies/b942a5_a8d264c1aa754d80bc7c98917dfd1fda-mv2.webp",
+    bg: "#e9d2b0",
+  },
 ];
 
-export function HeroSection() {
+function HeroArchImage({ item }: { item: ArchPortrait }) {
+  const [imgSrc, setImgSrc] = useState(item.src);
+
+  if (!item.src) {
+    return <div className="w-full h-full" style={{ backgroundColor: item.bg }} />;
+  }
+
   return (
-    <section className="relative bg-gradient-to-b from-[#fffdf8] to-[#fff1d8] pt-10 sm:pt-14 overflow-x-clip">
-      {/* Warm Sunrise Radial Glow */}
-      <span
-        aria-hidden="true"
-        className="tp-hero-sun pointer-events-none absolute top-[4%] left-1/2 w-[min(86vw,58rem)] aspect-square rounded-full"
-      />
+    <Image
+      src={imgSrc}
+      alt={item.breed}
+      fill
+      sizes="(max-width: 768px) 130px, 210px"
+      unoptimized
+      onError={() => {
+        if (item.fallbackSrc && imgSrc !== item.fallbackSrc) {
+          setImgSrc(item.fallbackSrc);
+        }
+      }}
+      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+      priority
+    />
+  );
+}
 
-      <div className="gutter max-w-[110rem] mx-auto text-center relative z-10">
-        {/* Script Eyebrow + Hand-Drawn Wavy Underline */}
-        <div className="inline-flex flex-col items-center relative mb-2">
-          <span className="font-scrawl text-[clamp(1.15rem,1.7vw,1.5rem)] text-[#8e3f15]">
-            every puppy is family
-          </span>
-          <svg viewBox="0 0 220 24" preserveAspectRatio="none" className="w-full h-3 -mt-0.5 text-[#c2622b]" aria-hidden="true">
-            <path
-              d="M4 14c18-10 30 8 48-1s28-9 46 0 30 8 48-1 30-9 48 0 18 2 22 0"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+export function HeroSection() {
+  const [activeArch, setActiveArch] = useState<number>(2);
 
-        {/* Display Headline */}
-        <h1 className="font-plush text-[clamp(2.6rem,min(9.2vw,11vh),8.4rem)] text-[#2a170e] max-w-[15ch] mx-auto mt-[clamp(0.45rem,1.4vh,1rem)]">
+  return (
+    <section
+      data-puppy-section="hero"
+      className="relative bg-gradient-to-b from-[#fffdf8] via-[#fdf3df] to-[#fbe3b4] pt-2 sm:pt-3 overflow-hidden"
+    >
+      {/* Top Headline + Subcopy + Dual CTAs */}
+      <div className="gutter max-w-[100rem] mx-auto text-center relative z-10">
+        <span className="font-scrawl text-[#c2622b] text-[clamp(1.2rem,1.9vw,1.65rem)] block mb-0.5 -rotate-2">
+          every puppy is family
+        </span>
+
+        <h1 className="font-plush text-[clamp(2.45rem,4.7vw,4.25rem)] leading-[1.03] tracking-[-0.02em] text-[#2a170e] max-w-[17ch] mx-auto">
           Premium teacup
           <br />
           puppies in Dubai
         </h1>
 
-        <p className="mt-[clamp(0.9rem,2.2vh,1.4rem)] text-[clamp(1.05rem,1.25vw,1.28rem)] leading-[1.5] text-[#5a3a28] max-w-[46ch] mx-auto">
-          Meet your new best friend in our Dubai showroom, or order a rare
-          miniature breed from trusted breeders worldwide.
+        <p className="mt-2.5 text-[clamp(0.95rem,1.15vw,1.14rem)] leading-[1.48] text-[#5a3a28] max-w-[50ch] mx-auto font-normal">
+          Ethical breeders in Dubai &amp; Korea. Hand-delivered across the UAE
+          with full health guarantees and lifetime support.
         </p>
 
-        {/* Dual Pill CTAs */}
-        <div className="mt-[clamp(1.1rem,3vh,2rem)] flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
           <Link href="/puppies" className="btn-terracotta">
-            View available puppies
+            Meet our puppies
           </Link>
           <a
-            href={buildWhatsAppUrl("Hi TeddyPups! I'd love to enquire about your teacup puppies.")}
+            href={buildWhatsAppUrl(
+              "Hi TeddyPups! I'd love to enquire about available puppies."
+            )}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline-dark"
+            className="btn-whatsapp"
           >
             Enquire on WhatsApp
           </a>
         </div>
+      </div>
 
-        {/* 7 Arched Puppy Showcase Windows tucked behind Scalloped Cloud Edge */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-5 lg:grid-cols-7 gap-2.5 sm:gap-4 items-end max-w-[82rem] mx-auto relative z-10 -mb-6 sm:-mb-8">
-          {HERO_ARCHES.map((arch, idx) => (
-            <div
-              key={idx}
-              style={{ "--arch-i": idx } as React.CSSProperties}
-              className={`tp-arch-enter relative flex flex-col items-center ${
-                arch.hideMobile ? "hidden lg:flex" : "flex"
-              }`}
-            >
-              {arch.isMascot ? (
-                <div className="group relative w-full h-[120px] sm:h-[168px] lg:h-[195px] flex items-end justify-center z-20 -mb-1">
-                  {/* Speech bubble on hover */}
-                  <span
-                    className="pointer-events-none absolute -top-2 left-1/2 -translate-x-1/2 scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-350 ease-[cubic-bezier(.34,1.56,.64,1)] px-3 py-0.5 rounded-full border-2 border-[#2a170e] bg-[#fffdf8] font-scrawl text-sm text-[#2a170e] shadow-[2px_3px_rgba(42,23,14,0.18)] whitespace-nowrap z-30"
-                    aria-hidden="true"
-                  >
-                    {arch.label}
-                  </span>
-                  <MascotPuppy
-                    pose="peek"
-                    className="w-24 h-24 sm:w-36 sm:h-32 lg:w-44 lg:h-36 transition-transform duration-350 ease-[cubic-bezier(.34,1.56,.64,1)] group-hover:-translate-y-2"
-                    animateFloat
+      {/* 7 Arched Breed Windows + single center mascot slot */}
+      <div className="mt-4 sm:mt-5 max-w-[115rem] mx-auto px-2 sm:px-4">
+        <div className="grid grid-cols-3 sm:grid-cols-7 gap-2.5 sm:gap-3.5 items-end">
+          {ARCH_PORTRAITS.map((item, idx) => {
+            if (idx === 3) {
+              return (
+                <div
+                  key="center-mascot"
+                  className="hidden sm:flex flex-col items-center justify-end pb-1 relative z-20"
+                >
+                  {/* Empty anchor — PuppyScrollJourney renders the single big puppy here */}
+                  <div
+                    data-puppy-hero-slot="true"
+                    className="w-[152px] h-[130px] mx-auto"
                   />
                 </div>
-              ) : (
-                <Link
-                  href={`/puppies?breed=${encodeURIComponent(arch.label)}`}
-                  style={{ transform: `rotate(${arch.tilt})` }}
-                  className={`group relative w-full ${arch.heightClass} flex items-end`}
-                >
-                  {/* Pop-up name pill on hover */}
-                  <span
-                    className="pointer-events-none absolute -top-7 left-1/2 -translate-x-1/2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-350 ease-[cubic-bezier(.34,1.56,.64,1)] z-30 px-3 py-0.5 rounded-full bg-[#fffdf8] border-2 border-[#2a170e] font-scrawl text-[0.85rem] sm:text-[0.95rem] text-[#2a170e] shadow-[2px_3px_rgba(42,23,14,0.18)] whitespace-nowrap"
-                  >
-                    {arch.label}
-                  </span>
+              );
+            }
 
-                  <span className="relative w-full h-full rounded-t-[999px] overflow-hidden border-[3px] border-b-0 border-[#2a170e] bg-[#fbe3b4] shadow-[inset_0_0_0_6px_#fffdf8] transition-transform duration-450 ease-[cubic-bezier(.34,1.56,.64,1)] group-hover:-translate-y-[12%]">
-                    <Image
-                      src={arch.src!}
-                      alt={arch.label}
-                      fill
-                      className="object-cover transition-transform duration-450 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"
-                    />
-                  </span>
-                </Link>
-              )}
-            </div>
-          ))}
+            const isPillVisible = activeArch === idx;
+
+            return (
+              <div
+                key={item.breed}
+                onMouseEnter={() => setActiveArch(idx)}
+                className={`${idx > 2 ? "hidden sm:flex" : "flex"
+                  } flex-col items-center group cursor-pointer`}
+              >
+                <span
+                  className={`mb-1.5 px-3.5 py-0.5 rounded-full bg-[#fffdf8] border-2 border-[#2a170e] font-plush text-[0.78rem] text-[#2a170e] shadow-[0_3px_0_#2a170e] transition-all duration-200 ${isPillVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"
+                    }`}
+                >
+                  {item.breed}
+                </span>
+
+                <div
+                  className="relative w-full h-[145px] sm:h-[168px] md:h-[188px] lg:h-[205px] rounded-t-full border-[2.5px] border-b-0 border-[#2a170e] overflow-hidden transition-transform duration-300 group-hover:-translate-y-1"
+                  style={{ backgroundColor: item.bg }}
+                >
+                  <HeroArchImage item={item} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Scalloped Cloud Divider + Quilted Diamond Band (foreground over arch bases) */}
-      <div className="relative z-20">
-        <ScallopedDivider fillColor="#fff1d8" strokeColor="#2a170e" />
-        <div className="diamond-quilt-bg h-[clamp(4.5rem,12vh,8rem)]" />
+      {/* Inline Scalloped Cloud Divider */}
+      <div className="relative z-20 -mt-1 leading-[0]">
+        <svg
+          viewBox="0 0 1440 44"
+          preserveAspectRatio="none"
+          className="block w-full h-[34px] sm:h-[44px]"
+          aria-hidden="true"
+        >
+          <defs>
+            <pattern
+              id="tpScallop"
+              width="64"
+              height="44"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M0 0 H64 V18 A32 32 0 0 1 0 18 Z"
+                fill="#faeccd"
+              />
+            </pattern>
+          </defs>
+          <rect width="1440" height="44" fill="url(#tpScallop)" />
+        </svg>
+      </div>
+
+      {/* Inline Quilted Diamond Band */}
+      <div className="relative z-10 leading-[0]">
+        <svg
+          viewBox="0 0 1440 46"
+          preserveAspectRatio="none"
+          className="block w-full h-[34px] sm:h-[46px]"
+          aria-hidden="true"
+        >
+          <defs>
+            <pattern
+              id="tpQuilt"
+              width="46"
+              height="46"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <rect width="46" height="46" fill="#f0c98c" />
+              <path
+                d="M0 0 V46 M0 0 H46"
+                stroke="#dfa362"
+                strokeWidth="2"
+              />
+            </pattern>
+          </defs>
+          <rect width="1440" height="46" fill="url(#tpQuilt)" />
+        </svg>
       </div>
     </section>
   );
