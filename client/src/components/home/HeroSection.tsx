@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { MascotPuppy } from "@/components/illustrations/MascotPuppy";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 interface ArchPortrait {
@@ -134,11 +135,16 @@ export function HeroSection() {
                   key="center-mascot"
                   className="hidden sm:flex flex-col items-center justify-end pb-1 relative z-20"
                 >
-                  {/* Empty anchor — PuppyScrollJourney renders the single big puppy here */}
+                  {/* Empty anchor on lg+ — PuppyScrollJourney renders the single big puppy here */}
                   <div
                     data-puppy-hero-slot="true"
-                    className="w-[152px] h-[130px] mx-auto"
-                  />
+                    className="w-[152px] h-[130px] mx-auto flex items-end justify-center"
+                  >
+                    <MascotPuppy
+                      pose="hero-rest"
+                      className="lg:hidden w-[142px] h-[124px] drop-shadow-[0_6px_10px_rgba(42,23,14,0.16)]"
+                    />
+                  </div>
                 </div>
               );
             }

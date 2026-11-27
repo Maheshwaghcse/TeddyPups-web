@@ -8,8 +8,8 @@ import type {
   Puppy,
 } from "./types";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://localhost:5000/api";
+const CONFIGURED_API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+const API_BASE = CONFIGURED_API_URL ?? "http://localhost:5000/api";
 
 interface ApiListResponse<T> {
   success: boolean;
@@ -19,9 +19,24 @@ interface ApiListResponse<T> {
 }
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
+  // On Vercel or any deployed host without NEXT_PUBLIC_API_URL, skip localhost:5000 so fallback data loads immediately
+  if (!CONFIGURED_API_URL) {
+    if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+      throw new Error("No NEXT_PUBLIC_API_URL configured in production");
+    }
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname !== "localhost" &&
+      window.location.hostname !== "127.0.0.1"
+    ) {
+      throw new Error("No NEXT_PUBLIC_API_URL configured for remote host");
+    }
+  }
+
   const res = await fetch(`${API_BASE}${path}`, {
     ...init,
     cache: "no-store",
+    signal: init?.signal ?? AbortSignal.timeout(2500),
   });
   const json = await res.json();
   if (!res.ok) {
